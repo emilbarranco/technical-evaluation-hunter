@@ -1,4 +1,5 @@
 import React from 'react';
+import Actors from './components/Actors'
 import './styles/main_style.css';
 
 function Main() {
@@ -18,7 +19,7 @@ function Main() {
         </ul>
       </div>
       <section>
-        <h1>Dashboard</h1>
+        <Actors/>
       </section>
     </div>
   );

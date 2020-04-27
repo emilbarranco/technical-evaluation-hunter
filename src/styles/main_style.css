@@ -7,7 +7,7 @@
 }
 
 header {
-    margin: 30px;
+    margin: 20px;
 }
 
 .Sidebar {
@@ -15,7 +15,7 @@ header {
     left: -250px;
     width: 250px;
     height: 100%;
-    background-color: var(--sec);
+    background-color: var(--sec); 
 }
 
 .Sidebar header {
@@ -48,14 +48,11 @@ header {
     display: none;
 }
 
-label #Btn, label #Cancel {
-    position: absolute;
-    cursor: pointer;
-}
-
 label #Btn {
     left: 20px;
     top: 20px;
+    position: absolute;
+    cursor: pointer;
     font-size: 2.4rem;
     color: var(--sec);
 }
@@ -64,6 +61,8 @@ label #Cancel {
     z-index: 1111;
     left: -250px;
     top: 0;
+    position: fixed;
+    cursor: pointer;
     font-size: 2rem;
     padding: 5px;
     color: var(--main);
@@ -88,7 +87,7 @@ label #Cancel {
 }
 
 section {
-    height: 100vh;
+    height: 100%;
     margin: 30px 60px;
     padding-left: 40px;
 }
