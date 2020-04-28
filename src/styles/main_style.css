@@ -1,93 +1,92 @@
-
 * {
-    text-decoration: none;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  text-decoration: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 header {
-    margin: 20px;
+  margin: 20px;
 }
 
 .Sidebar {
-    position: fixed;
-    left: -250px;
-    width: 250px;
-    height: 100%;
-    background-color: var(--sec); 
+  position: fixed;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: var(--sec);
 }
 
 .Sidebar header {
-    color: var(--main);
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-align: center;
-    line-height: 70px;
-    user-select: none;
+  color: var(--main);
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 70px;
+  user-select: none;
 }
 
 .Sidebar ul a {
-    display: block;
-    height: 100%;
-    width: 100%;
-    line-height: 65px;
-    font-size: 1.2rem;
-    color: var(--main);
-    padding-left: 40px;
-    border-top: 1px solid rgba(255, 255, 255, .3);
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 65px;
+  font-size: 1.2rem;
+  color: var(--main);
+  padding-left: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.Sidebar ul a ion-icon  {
-    margin-right: 16px;
-    margin-top: 16px;
-    font-size: 24px;
+.Sidebar ul a ion-icon {
+  margin-right: 16px;
+  margin-top: 16px;
+  font-size: 24px;
 }
 
 #Check {
-    display: none;
+  display: none;
 }
 
 label #Btn {
-    left: 20px;
-    top: 20px;
-    position: absolute;
-    cursor: pointer;
-    font-size: 2.4rem;
-    color: var(--sec);
+  left: 20px;
+  top: 20px;
+  position: absolute;
+  cursor: pointer;
+  font-size: 2.4rem;
+  color: var(--sec);
 }
 
 label #Cancel {
-    z-index: 1111;
-    left: -250px;
-    top: 0;
-    position: fixed;
-    cursor: pointer;
-    font-size: 2rem;
-    padding: 5px;
-    color: var(--main);
+  z-index: 1111;
+  left: -250px;
+  top: 0;
+  position: fixed;
+  cursor: pointer;
+  font-size: 2rem;
+  padding: 5px;
+  color: var(--main);
 }
 
 #Check:checked ~ .Sidebar {
-    left: 0;
+  left: 0;
 }
 
 #Check:checked ~ label #Btn {
-    left: 250px;
-    opacity: 0;
-    pointer-events: none;
+  left: 250px;
+  opacity: 0;
+  pointer-events: none;
 }
 
 #Check:checked ~ label #Cancel {
-    left: 200px;
+  left: 200px;
 }
 
 #Check:checked ~ section {
-    margin-left: 250px;
+  margin-left: 250px;
 }
 
 section {
-    height: 100%;
-    margin: 30px 60px;
-    padding-left: 40px;
+  height: 100%;
+  margin: 30px 60px;
+  padding-left: 40px;
 }
