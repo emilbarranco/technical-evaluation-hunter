@@ -26,12 +26,13 @@ export class Actors extends Component {
                 <div className="Grid">
                     
                     <div className="Box">
-                        <img src="https://placehold.it/100x100/" alt="User Profile"/>
+                        <img src="https://placehold.it/100x100/" id="uploadPreview" alt="User Profile"/>
                         <div className="Form">
                             <div className="Inputs">
                                 <input type="file" name="Picture" id="Picture"/>
                                 <input placeholder="Actor's Fullname" type="text" name="FullName" id="Fullname"/>
                                 <input placeholder="Birth Date" type="date" name="Birthdate" id="Birthdate" value="2020-01-01" />
+                                <button className="AddActor">Add Actor</button>
                             </div>
                         </div>
                     </div>

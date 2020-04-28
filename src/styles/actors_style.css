@@ -31,11 +31,14 @@ section hr {
 .Box {
     display: flex;
     grid-column: 1/9;
+    float: left;
 }
 
 .Box img {
-    margin: 10px;
+    margin: auto 20px;
     border-radius: 100%;
+    width: 100px;
+    height: 100px;
 }
 
 .Form {
@@ -60,6 +63,20 @@ section hr {
     font-size: 15px;
     font-family: 'Manrope';
     font-weight: normal;
+}
+
+.AddActor {
+    margin: 10px;
+    height: 30px;
+    width: 200px;
+    padding: 2px;
+    border: none;
+    font-family: 'Manrope';
+    font-weight: normal;
+    font-size: 1rem;
+    color: var(--main);
+    background-color: var(--sec);
+    border-radius: 5px;
 }
 
 .Inputs {
