@@ -22,7 +22,7 @@ function Main() {
       <div className="Sidebar">
         <header>Movie Manager</header>
         <ul>
-          <li><a href="/Actors"><ion-icon name="home"></ion-icon>Actors</a></li>
+          <li><a href="/"><ion-icon name="home"></ion-icon>Actors</a></li>
           <li><a href="/Movies"><ion-icon name="videocam"></ion-icon>Movies</a></li>
           <li><a href="https://google.com"><ion-icon name="information-circle"></ion-icon>More</a></li>
         </ul>
@@ -30,7 +30,7 @@ function Main() {
       <section>
       <Router>
         <Switch>
-        <Route path="/Actors">
+        <Route path="/">
           <Actors />
         </Route>
         <Route path="/Movies">

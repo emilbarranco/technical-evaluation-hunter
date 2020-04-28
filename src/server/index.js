@@ -21,13 +21,14 @@ App.listen(5000, () => {
 App.post("/actors", async (req, res) => {
   try {
     // Destructuring the content from the body to it send through the query
-    const { Fullname, Gender, Birthdate } = req.body;
+    const { Fullname, Gender, Birthdate, Picture } = req.body;
     const newActor = await Pool.query(
-      "INSERT INTO ACTORS (Fullname, Gender, Birthdate) VALUES ($1, $2, $3) RETURNING *",
-      [Fullname, Gender, Birthdate]
+      "INSERT INTO ACTORS (Fullname, Gender, Birthdate, Picture) VALUES ($1, $2, $3, $4)",
+      [Fullname, Gender, Birthdate, Picture]
     );
     // Retrieving the response from the server
     res.json(newActor.rows[0]);
+    
   } catch (error) {
     console.error(error.message);
   }

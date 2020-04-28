@@ -6,4 +6,5 @@ CREATE TABLE Actors(
     ActorID SERIAL PRIMARY KEY,
     Fullname VARCHAR(255),
     Gender Varchar(255),
+    Picture Varchar(255),
 );
