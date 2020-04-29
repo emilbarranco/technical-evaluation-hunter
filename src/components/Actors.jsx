@@ -1,7 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/actors_style.css";
 
 const Actors = () => {
+  window.document.title = "Movie Manager - Actors"
+
+
+  // Retriving all records from the table as JSON data
+  const [actors, setActors] = useState([])
+
+  const LoadData = async () => {
+    try {
+
+      const response = await fetch("http://localhost:5000/actors")
+      const JSON_Data = await response.json()
+      setActors(JSON_Data)
+      console.log(JSON_Data)
+
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+
+  // Performing one request to get the data from the table
+  useEffect(() => {
+    LoadData()
+  }, [])
+
+  const Actors = actors.map((actors) =>
+    <div className="Actor" key={actors.actorid}>
+      <img src="https://source.unsplash.com/150x150/?person" alt="User Profile" />
+      <div className="Details">
+        <h3>{actors.fullname}</h3>
+        <h4>{actors.gender}</h4>
+        <h4>{actors.birthdate}</h4>
+      </div>
+    </div>
+  );
 
   // Getting & Setting the values of the Form fields to send them through the server
   const [Fullname, setFullname] = useState("");
@@ -48,20 +82,8 @@ const Actors = () => {
   function LoadImage() {
     let prevImage = document.getElementById("prevImage")
     prevImage.width = "200"
-    prevImage.src = this.src
+    prevImage.value = this.src
   }
-  
-
-  /*const Actors = actors.map((data) =>  
-        <div className="Actor">
-            <img src="https://placehold.it/100x100/" alt="User Profile"/>
-            <div className="Details">
-                <h3>{data.Fullname}</h3>
-                <h4>{data.Gender}</h4>
-                <h4>{data.Birthdate}</h4>
-            </div>
-        </div> 
-    );*/
 
   return (
     <div>
@@ -76,13 +98,13 @@ const Actors = () => {
           />
           <form className="Form" onSubmit={SubmitForm}>
             <div className="Inputs">
-              <input 
+              <input
                 required
-                type="file" 
-                name="Picture" 
-                value={Picture}
-                encType="multipart/form-data" 
-                onChange={(e) => setPicture(e.target.value)} />
+                type="file"
+                name="Picture"
+                src={Picture}
+                encType="multipart/form-data"
+                onChange={(e) => setPicture(e.target.currentSrc)} />
               <input
                 required
                 placeholder="Actor's Fullname"
@@ -118,7 +140,7 @@ const Actors = () => {
           <h1>Actors</h1>
           <hr />
         </div>
-        <div className="Actors">{}</div>
+        <div className="Actors">{Actors}</div>
       </div>
     </div>
   );

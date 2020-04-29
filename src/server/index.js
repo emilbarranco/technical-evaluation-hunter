@@ -34,11 +34,38 @@ App.post("/actors", async (req, res) => {
   }
 });
 
+// Add a Movie to the table
+App.post("/movies", async (req, res) => {
+  try {
+    // Destructuring the content from the body to it send through the query
+    const { Title, Genre, ReleaseDate, Picture } = req.body;
+    const newMovie = await Pool.query(
+      "INSERT INTO ACTORS (Title, Genre, ReleaseDate, Picture) VALUES ($1, $2, $3, $4)",
+      [Title, Genre, ReleaseDate, Picture]
+    );
+    // Retrieving the response from the server
+    res.json(newMovie.rows[0]);
+    
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
 // Getting All Actors
 App.get("/actors", async (req, res) => {
   try {
     const allActors = await Pool.query("SELECT * FROM ACTORS");
     res.json(allActors.rows);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+// Getting All Movies
+App.get("/movies", async (req, res) => {
+  try {
+    const allMovies = await Pool.query("SELECT * FROM MOVIES");
+    res.json(allMovies.rows);
   } catch (error) {
     console.error(error.message);
   }
@@ -52,6 +79,20 @@ App.get("/actors/:ActorID", async (req, res) => {
       ActorID,
     ]);
     res.json(actor.rows[0]);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+
+// Getting a Single Movie
+App.get("/actors/:MovieID", async (req, res) => {
+  try {
+    const { MovieID } = req.params;
+    const movie = await Pool.query("SELECT * FROM MOVIES WHERE MovieID = $1", [
+      MovieID,
+    ]);
+    res.json(movie.rows[0]);
   } catch (error) {
     console.error(error.message);
   }
@@ -72,6 +113,21 @@ App.put("/actors/:ActorID", async (req, res) => {
   }
 });
 
+// Updating a Movie
+App.put("/actors/:MovieID", async (req, res) => {
+  try {
+    const { MovieID } = req.params;
+    const { Title, Genre, ReleaseDate } = req.body;
+    const updateMovie = await Pool.query(
+      "UPDATE MOVIES SET Title = $1, Genre = $2, ReleaseDate = $3 WHERE MovieID = $4",
+      [Title, Genre, ReleaseDate, MovieID]
+    );
+    res.json(updateMovie.rows);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
 // Deleting Actors from the table
 App.delete("/actors/:ActorID", async (req, res) => {
   try {
@@ -81,6 +137,20 @@ App.delete("/actors/:ActorID", async (req, res) => {
       [ActorID]
     );
     res.json(deleteActor.rows);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+// Deleting Actors from the table
+App.delete("/actors/:MovieID", async (req, res) => {
+  try {
+    const { MovieID } = req.params;
+    const deleteMovie = await Pool.query(
+      "DELETE FROM MOVIES WHERE MovieID = $1",
+      [MovieID]
+    );
+    res.json(deleteMovie.rows);
   } catch (error) {
     console.error(error.message);
   }

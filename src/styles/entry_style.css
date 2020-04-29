@@ -1,0 +1,85 @@
+
+.Entry {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    grid-gap: 1rem;
+    height: 100%;
+    padding: 40px;
+    margin: 30px;
+    border-radius: 20px;
+    background-color: var(--alt);
+}
+
+.Accent {
+    color: var(--sec);
+}
+
+.Banner {
+    text-align: center;
+}
+
+.Banner h1 {
+    font-size: 1.5rem;
+    margin: 20px 0;
+    font-family: 'Manrope';
+}
+
+.Banner img {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+}
+
+.Info {
+    margin: 30px;
+}
+
+.Info h1 {
+    text-align: center;
+}
+
+.Info img {
+    width: 20%;
+    padding: 10px;
+    border-bottom: 4px solid var(--sec);
+}
+
+.Techs {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.Description {
+    width: 100%;
+    padding: 20px;
+    margin: 30px;
+}
+
+.Description p {
+    text-align: justify;
+    font-weight: normal;
+    margin: 20px;
+}
+
+.accentRed {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.Repo {
+    background-color: var(--sec);
+    border-radius: 20px;
+    padding: 10px 30px;
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+}
+
+.Repo a {
+    text-decoration: none;
+    color: var(--main);
+}
