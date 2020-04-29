@@ -58,7 +58,7 @@
 }
 
 .Description p {
-    text-align: justify;
+    text-align: left;
     font-weight: normal;
     margin: 20px;
 }

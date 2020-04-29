@@ -26,6 +26,21 @@ const Actors = () => {
     LoadData()
   }, [])
 
+  // Deleting an Actor
+  const delActor = async (ID) => {
+    try {
+      const deleteActor = await fetch(`http://localhost:5000/actors/${ID}`, {
+        method: "DELETE"
+      })
+      console.log(deleteActor)
+      window.location.reload()
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
+  // Updating
+
   const Actors = actors.map((actors) =>
     <div className="Actor" key={actors.actorid}>
       <img src="https://source.unsplash.com/150x150/?person" alt="User Profile" />
@@ -33,6 +48,10 @@ const Actors = () => {
         <h3>{actors.fullname}</h3>
         <h4>{actors.gender}</h4>
         <h4>{actors.birthdate}</h4>
+        <div className="Options">
+          <button onClick={() => delActor()}><ion-icon name="create-outline"></ion-icon></button>
+          <button onClick={() => delActor(actors.actorid)}><ion-icon name="close-outline"></ion-icon></button>
+        </div>
       </div>
     </div>
   );
@@ -65,6 +84,7 @@ const Actors = () => {
     } catch (error) {
       console.error(error.message)
     }
+    window.location.reload();
   }
 
   //Loading the Actors Picture with a listener

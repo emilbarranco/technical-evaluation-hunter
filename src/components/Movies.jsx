@@ -4,7 +4,6 @@ import "../styles/movies_style.css";
 const Movies = () => {
     window.document.title = "Movie Manager - Movies"
 
-
     // Retriving all records from the table as JSON data
     const [movies, setMovies] = useState([])
 
@@ -26,13 +25,30 @@ const Movies = () => {
         LoadData()
     }, [])
 
+     // Deleting a Movie
+    const delMovie = async (ID) => {
+        try {
+        const deleteMovie = await fetch(`http://localhost:5000/movies/${ID}`, {
+            method: "DELETE"
+        })
+        console.log(deleteMovie)
+        window.location.reload()
+        } catch (error) {
+        console.log(error.message)
+        }
+    }
+
     const Movies = movies.map((movies) =>
-        <div className="Movies" key={movies.movieid}>
+        <div className="Movie" key={movies.movieid}>
             <img src="https://source.unsplash.com/150x150/?person" alt="Movie Picture" />
             <div className="Details">
                 <h3>{movies.title}</h3>
                 <h4>{movies.genre}</h4>
-                <h4>{movies.releasedate}</h4>
+                <h4>{movies.release_date}</h4>
+                <div className="Options">
+                    <button onClick={() => delMovie()}><ion-icon name="create-outline"></ion-icon></button>
+                    <button onClick={() => delMovie(movies.movieid)}><ion-icon name="close-outline"></ion-icon></button>
+                </div>
             </div>
         </div>
     );
@@ -40,17 +56,17 @@ const Movies = () => {
     // Getting & Setting the values of the Form fields to send them through the server
     const [Title, setTitle] = useState("");
     const [Genre, setGenre] = useState("");
-    const [ReleaseDate, setReleaseDate] = useState("");
+    const [Release_Date, setRelease_Date] = useState("");
     const [Picture, setPicture] = useState("");
 
     // Handling the form submit to insert on the table Movies
-    const SubmitForm = async (e) => {
+    const Submit = async (e) => {
         e.preventDefault()
         try {
             const body = {
                 Title,
                 Genre,
-                ReleaseDate,
+                Release_Date,
                 Picture
             }
             const response = await fetch("http://localhost:5000/movies", {
@@ -65,24 +81,26 @@ const Movies = () => {
         } catch (error) {
             console.error(error.message)
         }
+        window.location.reload(); 
     }
 
     //Loading the Movie Picture with a listener
     window.addEventListener('load', () => {
         document.querySelector('input[type="file"]').addEventListener('change', function () {
             if (this.files && this.files[0]) {
-                let prevImage = document.getElementById('prevImage')
-                prevImage.src = URL.createObjectURL(this.files[0])
-                prevImage.onload = LoadImage;
+                let movImage = document.getElementById('movImage')
+                movImage.src = URL.createObjectURL(this.files[0])
+                movImage.onload = LoadImage;
             }
         })
     })
 
     // Setting the selected image to the preview of the form and setting default width
     function LoadImage() {
-        let prevImage = document.getElementById("prevImage")
-        prevImage.width = "200"
-        prevImage.value = this.src
+        let movImage = document.getElementById("movImage")
+        movImage.width = "150"
+        movImage.height = "150"
+        movImage.value = this.src
     }
 
     return (
@@ -94,9 +112,9 @@ const Movies = () => {
                     <img
                         src="https://placehold.it/150x200/"
                         alt="Movie Picture"
-                        id="prevImage"
+                        id="movImage"
                     />
-                    <form className="Form" onSubmit={SubmitForm}>
+                    <form className="Form" onSubmit={Submit}>
                         <div className="Inputs">
                             <input
                                 required
@@ -116,10 +134,10 @@ const Movies = () => {
                             <input
                                 required
                                 placeholder="Release Date"
-                                type="text"
-                                name="ReleaseDate"
-                                value={ReleaseDate}
-                                onChange={(e) => setReleaseDate(e.target.value)}
+                                type="date"
+                                name="Release_Date"
+                                value={Release_Date}
+                                onChange={(e) => setRelease_Date(e.target.value)}
                             />
                             <select
                                 required
@@ -128,11 +146,11 @@ const Movies = () => {
                                 onChange={(e) => setGenre(e.target.value)}
                             >
                                 <option>Select Genre</option>
-                                <option value="Female">Sci-Fi</option>
-                                <option value="Female">Action</option>
-                                <option value="Female">Comedy</option>
-                                <option value="Female">Adventure</option>
-                                <option value="Female">Romance</option>
+                                <option value="Sci-Fi">Sci-Fi</option>
+                                <option value="Action">Action</option>
+                                <option value="Comedy">Comedy</option>
+                                <option value="Adventure">Adventure</option>
+                                <option value="Romance">Romance</option>
                             </select>
                             <button className="AddMovie">Add Movie</button>
                         </div>

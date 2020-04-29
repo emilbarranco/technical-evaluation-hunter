@@ -101,22 +101,22 @@ section hr {
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
   grid-gap: 1rem;
+  height: 100%;
 }
 
 .Movie {
   background-color: #fff;
   border-radius: 10px;
-  display: flex;
   border-left: 5px solid var(--sec);
   justify-content: space-evenly;
   padding: 0.5rem;
   width: 100%;
+  height: 100%;
 }
 
 .Movie img {
-  border-radius: 100%;
   width: 100%;
-  height: 100%;
+  height: 150px;
 }
 
 .Details {
@@ -127,3 +127,24 @@ section hr {
 .Details h3 {
   color: var(--sec);
 }
+
+.Options {
+    margin-right: 10px;
+    justify-content: space-between;
+  }
+  
+  .Options button{
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+    border: none;
+    background-color: var(--sec);
+    text-align: center;
+    border-radius: 100%;
+    color: var(--main);
+  }
+  
+  .Options button ion-icon {
+    font-size: 1.4rem;
+  }
+  
